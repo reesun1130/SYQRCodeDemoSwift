@@ -6,12 +6,12 @@
 //  Copyright © Ree Sun <ree.sun.cn@hotmail.com || 1507602555@qq.com>
 //
 
-import AVFoundation
 import UIKit
+import AVFoundation
 
 class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     private var vQRCode : SYQRCodeOverlayView!
-    private var qrVideoPreviewLayer : AVCaptureVideoPreviewLayer!
+    private var qrVideoPreviewLayer : SYAVCaptureVideoPreviewLayer!
     private var qrSession : AVCaptureSession!
     private var input : AVCaptureDeviceInput!
     private var output : AVCaptureMetadataOutput!
@@ -100,64 +100,9 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     }
 
     private func loadCaptureUI() -> Bool {
-        for capDevice in AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) {
-            if (capDevice.position == AVCaptureDevicePosition.Back) {
-                captureDevice = capDevice as! AVCaptureDevice
-            }
-        }
+        qrVideoPreviewLayer = SYAVCaptureVideoPreviewLayer(frame: CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT), rectOfInterest: getReaderViewBoundsWithSize(CGSizeMake(200, 200)), metadataObjectsDelegate: self)
         
-        if (captureDevice == nil) {
-            return false
-        }
-        
-        if (!captureDevice.hasTorch) {
-            alert("当前设备没有闪光灯",msg: nil)
-        }
-        
-        let mSession = AVCaptureSession.init()
-        
-        if mSession.canSetSessionPreset(AVCaptureSessionPreset1920x1080) {
-            mSession.sessionPreset = AVCaptureSessionPreset1920x1080
-        }
-        else if mSession.canSetSessionPreset(AVCaptureSessionPreset1280x720) {
-            mSession.sessionPreset = AVCaptureSessionPreset1280x720
-        }
-        else if mSession.canSetSessionPreset(AVCaptureSessionPresetiFrame960x540) {
-            mSession.sessionPreset = AVCaptureSessionPresetiFrame960x540
-        }
-        else if mSession.canSetSessionPreset(AVCaptureSessionPreset640x480) {
-            mSession.sessionPreset = AVCaptureSessionPreset640x480
-        }
-        else {
-            mSession.sessionPreset = AVCaptureSessionPresetLow
-        }
-        
-        do {
-            input = try AVCaptureDeviceInput(device: captureDevice)
-        }
-        catch let error as NSError {
-            SYLog(error.debugDescription, classname: self)
-        }
-        
-        if (input == nil) {
-            return false
-        }
-        mSession.addInput(input)
-
-        output = AVCaptureMetadataOutput.init()
-        output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-        output.rectOfInterest = self.getReaderViewBoundsWithSize(CGSizeMake(200, 200))
-
-        if mSession.canAddOutput(output) {
-            mSession.addOutput(output)
-        }
-        output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
-
-        qrVideoPreviewLayer = AVCaptureVideoPreviewLayer.init(session: mSession)
-        qrVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        qrVideoPreviewLayer.frame = CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT)
-        
-        if (qrVideoPreviewLayer == nil) {
+        if (qrVideoPreviewLayer.videoPreviewLayer == nil) {
             return false
         }
         qrSession = qrVideoPreviewLayer.session
@@ -166,9 +111,9 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     }
     
     private func setOverlayPickerView() {
-        vQRCode = SYQRCodeOverlayView.init(frame: CGRect(x: 0,y: 0,width: kSCREEN_WIDTH,height: kSCREEN_HEIGHT), baseLayer: qrVideoPreviewLayer)
+        vQRCode = SYQRCodeOverlayView(frame: CGRect(x: 0,y: 0,width: kSCREEN_WIDTH,height: kSCREEN_HEIGHT), baseLayer: qrVideoPreviewLayer.videoPreviewLayer)
         self.view.addSubview(vQRCode)
-        self.view.layer.insertSublayer(self.qrVideoPreviewLayer, atIndex: 0)
+        self.view.layer.insertSublayer(qrVideoPreviewLayer.videoPreviewLayer!, atIndex: 0)
         
         //添加过渡动画，类似微信
         let animationLayer = CAKeyframeAnimation.init(keyPath: "transform")
@@ -178,16 +123,12 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         values.addObject(NSValue(CATransform3D: CATransform3DMakeScale(0.1, 0.1, 1.0)))
         values.addObject(NSValue(CATransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0)))
         animationLayer.values = values as [AnyObject]
-        self.qrVideoPreviewLayer.addAnimation(animationLayer, forKey: nil)
+        qrVideoPreviewLayer.videoPreviewLayer!.addAnimation(animationLayer, forKey: nil)
         
         //添加导航栏
         self.createTopBar()
     }
 
-    private func getReaderViewBoundsWithSize(asize:CGSize) -> CGRect {
-        return CGRectMake(kLineMinY / kSCREEN_HEIGHT, ((kSCREEN_WIDTH - asize.width) / 2.0) / kSCREEN_WIDTH, asize.height / kSCREEN_HEIGHT, asize.width / kSCREEN_WIDTH)
-    }
-    
     //权限受限
     private func showUnAuthorizedTips(flag:Bool) {
         if (_tipsLabel == nil) {
@@ -225,7 +166,7 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         if _line == nil {
             _line = UIImageView.init(frame: CGRectMake((kSCREEN_WIDTH - 216) / 2.0, kLineMinY, 216, 1))
             _line.image = UIImage.init(named: "qrcode_blueline")
-            qrVideoPreviewLayer.addSublayer(_line.layer)
+            qrVideoPreviewLayer.videoPreviewLayer!.addSublayer(_line.layer)
         }
         
         _lineTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 / 20, target: self, selector: Selector("animationLine"), userInfo: nil, repeats: true)

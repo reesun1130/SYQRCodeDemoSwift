@@ -75,6 +75,10 @@ func canAccessAVCaptureDeviceForMediaType(mediaType: String) -> Bool {
     return canAccess
 }
 
+func getReaderViewBoundsWithSize(asize:CGSize) -> CGRect {
+    return CGRectMake(kLineMinY / kSCREEN_HEIGHT, ((kSCREEN_WIDTH - asize.width) / 2.0) / kSCREEN_WIDTH, asize.height / kSCREEN_HEIGHT, asize.width / kSCREEN_WIDTH)
+}
+
 func generateQRCodeImage(strQRCode:String,strLogo:String!)->UIImage {
     let stringData = strQRCode.dataUsingEncoding(NSUTF8StringEncoding)
     

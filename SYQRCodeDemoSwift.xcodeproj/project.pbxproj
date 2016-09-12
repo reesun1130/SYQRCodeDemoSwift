@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C05AE231D7FE63700A80984 /* AVCaptureVideoPreviewLayer+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05AE191D7FE63700A80984 /* AVCaptureVideoPreviewLayer+Helper.swift */; };
 		1C05AE241D7FE63700A80984 /* qrcode_blueline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C05AE1A1D7FE63700A80984 /* qrcode_blueline@2x.png */; };
 		1C05AE251D7FE63700A80984 /* qrcode_blueline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C05AE1B1D7FE63700A80984 /* qrcode_blueline@3x.png */; };
 		1C05AE261D7FE63700A80984 /* qrcode_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C05AE1C1D7FE63700A80984 /* qrcode_corner@2x.png */; };
@@ -18,6 +17,7 @@
 		1C05AE2B1D7FE63700A80984 /* SYQRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05AE211D7FE63700A80984 /* SYQRCodeReader.swift */; };
 		1C05AE2C1D7FE63700A80984 /* SYQRCodeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05AE221D7FE63700A80984 /* SYQRCodeUtility.swift */; };
 		1C05AE2E1D7FF6BA00A80984 /* qrcodelogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C05AE2D1D7FF6BA00A80984 /* qrcodelogo.png */; };
+		1C0EA2F41D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0EA2F31D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift */; };
 		1C1E95261D7E8BF500C71655 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E95251D7E8BF500C71655 /* AppDelegate.swift */; };
 		1C1E95281D7E8BF500C71655 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E95271D7E8BF500C71655 /* ViewController.swift */; };
 		1C1E952B1D7E8BF500C71655 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E95291D7E8BF500C71655 /* Main.storyboard */; };
@@ -26,7 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C05AE191D7FE63700A80984 /* AVCaptureVideoPreviewLayer+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVCaptureVideoPreviewLayer+Helper.swift"; sourceTree = "<group>"; };
 		1C05AE1A1D7FE63700A80984 /* qrcode_blueline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_blueline@2x.png"; sourceTree = "<group>"; };
 		1C05AE1B1D7FE63700A80984 /* qrcode_blueline@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_blueline@3x.png"; sourceTree = "<group>"; };
 		1C05AE1C1D7FE63700A80984 /* qrcode_corner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_corner@2x.png"; sourceTree = "<group>"; };
@@ -37,6 +36,7 @@
 		1C05AE211D7FE63700A80984 /* SYQRCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeReader.swift; sourceTree = "<group>"; };
 		1C05AE221D7FE63700A80984 /* SYQRCodeUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeUtility.swift; sourceTree = "<group>"; };
 		1C05AE2D1D7FF6BA00A80984 /* qrcodelogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcodelogo.png; sourceTree = "<group>"; };
+		1C0EA2F31D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYAVCaptureVideoPreviewLayer.swift; sourceTree = "<group>"; };
 		1C1E95221D7E8BF500C71655 /* SYQRCodeDemoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYQRCodeDemoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C1E95251D7E8BF500C71655 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C1E95271D7E8BF500C71655 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,8 +64,8 @@
 				1C05AE1E1D7FE63700A80984 /* SYDefinesHeader.swift */,
 				1C05AE1F1D7FE63700A80984 /* SYQRCodeModel.swift */,
 				1C05AE221D7FE63700A80984 /* SYQRCodeUtility.swift */,
-				1C05AE191D7FE63700A80984 /* AVCaptureVideoPreviewLayer+Helper.swift */,
 				1C05AE201D7FE63700A80984 /* SYQRCodeOverlayView.swift */,
+				1C0EA2F31D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift */,
 				1C05AE1A1D7FE63700A80984 /* qrcode_blueline@2x.png */,
 				1C05AE1B1D7FE63700A80984 /* qrcode_blueline@3x.png */,
 				1C05AE1C1D7FE63700A80984 /* qrcode_corner@2x.png */,
@@ -181,7 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C05AE231D7FE63700A80984 /* AVCaptureVideoPreviewLayer+Helper.swift in Sources */,
+				1C0EA2F41D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift in Sources */,
 				1C05AE291D7FE63700A80984 /* SYQRCodeModel.swift in Sources */,
 				1C1E95281D7E8BF500C71655 /* ViewController.swift in Sources */,
 				1C05AE2A1D7FE63700A80984 /* SYQRCodeOverlayView.swift in Sources */,
@@ -302,6 +302,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SYQRCodeDemoSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DSY_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sy.SYQRCodeDemoSwifter;
@@ -314,6 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SYQRCodeDemoSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sy.SYQRCodeDemoSwifter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
