@@ -10,29 +10,30 @@ import UIKit
 import AVFoundation
 
 class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    private var vQRCode : SYQRCodeOverlayView!
-    private var qrVideoPreviewLayer : SYAVCaptureVideoPreviewLayer!
-    private var qrSession : AVCaptureSession!
-    private var input : AVCaptureDeviceInput!
-    private var output : AVCaptureMetadataOutput!
-    private var captureDevice : AVCaptureDevice!
-    private var _vActivityIndicator : UIActivityIndicatorView!
-    private var _tipsLabel : UILabel!
-    private var _line : UIImageView!
-    private var _lineTimer : NSTimer!
-    private var flag = true
-    private var btnBack : UIButton!
+    fileprivate var vQRCode : SYQRCodeOverlayView!
+    fileprivate var qrVideoPreviewLayer : SYAVCaptureVideoPreviewLayer!
+    fileprivate var qrSession : AVCaptureSession!
+    fileprivate var input : AVCaptureDeviceInput!
+    fileprivate var output : AVCaptureMetadataOutput!
+    fileprivate var captureDevice : AVCaptureDevice!
+    fileprivate var _vActivityIndicator : UIActivityIndicatorView!
+    fileprivate var _tipsLabel : UILabel!
+    fileprivate var _line : UIImageView!
+    fileprivate var _lineTimer : Timer!
+    fileprivate var flag = true
+    fileprivate var btnBack : UIButton!
+    fileprivate var readerDelegate : SYQRCodeReaderSwiftDelegate!
     
     //读取之后的回调
-    typealias SYQRCodeSuncessBlock = (SYQRCodeReader, SYQRCodeModel)->Void
-    typealias SYQRCodeFailBlock = (SYQRCodeReader)->Void
-    
-    private var suncessBlock = SYQRCodeSuncessBlock?()
-    private var failBlock = SYQRCodeFailBlock?()
-
+//    fileprivate var suncessBlock : (SYQRCodeReader, SYQRCodeModel)->Void
+//    fileprivate var failBlock : (SYQRCodeReader)->Void
+//    
+//    required public init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
 
         //指示符
         self.createLoadingIndicator()
@@ -43,55 +44,77 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         }
         else {
             //延迟20ms加载，提高用户体验
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.02))
-            dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
+            let delayTime = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * 0.02)) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: delayTime) { () -> Void in
                 self.displayScanView()
             }
         }
     }
     
-    //回调
-    func readSuccessBlock(ablock:(SYQRCodeReader!, SYQRCodeModel!)->Void) {
-        suncessBlock = ablock
+    open func setReaderDelegate(_ readerDelegate: SYQRCodeReaderSwiftDelegate!) {
+        self.readerDelegate = readerDelegate
     }
     
-    func readFailBlock(ablock:(SYQRCodeReader!)->Void) {
-        failBlock = ablock
+    func canAccessAVCaptureDeviceForMediaType(_ mediaType: String) -> Bool {
+        var canAccess = false
+        let status = AVCaptureDevice.authorizationStatus(forMediaType: mediaType)
+        
+        weak var weakSelf : SYQRCodeReader!
+        
+        if (status == .notDetermined) {
+            let dis_sema = DispatchSemaphore(value: 0)
+            AVCaptureDevice.requestAccess(forMediaType: mediaType, completionHandler: { (granted:Bool) -> Void in
+                dis_sema.signal()
+                canAccess = granted
+                
+                DispatchQueue.main.async {
+                    weakSelf.showUnAuthorizedTips(canAccess)
+                }
+            })
+            _ = dis_sema.wait(timeout: DispatchTime.distantFuture)
+        }
+        else if (status == .authorized) {
+            canAccess = true
+        }
+        
+        return canAccess
     }
 
     //头
-    private func createTopBar() {
+    fileprivate func createTopBar() {
         if btnBack == nil {
-            btnBack = UIButton.init(frame: CGRectMake(0, 0, 60, 64))
-            btnBack.setTitle("关闭", forState: UIControlState.Normal)
-            btnBack.backgroundColor = UIColor.redColor()
-            btnBack.addTarget(self, action: Selector("onClickBtnBack"), forControlEvents: UIControlEvents.TouchUpInside)
+            btnBack = UIButton.init(frame: CGRect(x: 0, y: 0, width: 60, height: 64))
+            btnBack.setTitle("关闭", for: UIControlState())
+            btnBack.backgroundColor = UIColor.red
+            btnBack.addTarget(self, action: #selector(SYQRCodeReader.onClickBtnBack), for: UIControlEvents.touchUpInside)
         }
         btnBack.removeFromSuperview()
         self.view.addSubview(btnBack)
     }
     
     func onClickBtnBack() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     //提示符
-    private func createLoadingIndicator() {
-        _vActivityIndicator = UIActivityIndicatorView.init(frame: CGRectMake((kSCREEN_WIDTH - 100) / 2.0, (kSCREEN_HEIGHT - 164)  / 2.0, 100, 100))
+    fileprivate func createLoadingIndicator() {
+        _vActivityIndicator = UIActivityIndicatorView.init(frame: CGRect(x: (kSCREEN_WIDTH - 100) / 2.0, y: (kSCREEN_HEIGHT - 164)  / 2.0, width: 100, height: 100))
         _vActivityIndicator.hidesWhenStopped = true
-        _vActivityIndicator.backgroundColor = UIColor.redColor()
+        _vActivityIndicator.backgroundColor = UIColor.red
         _vActivityIndicator.startAnimating()
         self.view.addSubview(_vActivityIndicator)
     }
     
     //扫描视图
-    private func displayScanView() {
+    fileprivate func displayScanView() {
         if self.loadCaptureUI() {
             self.showUnAuthorizedTips(false)
 
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.setOverlayPickerView()
-                self.startSYQRCodeReading()
+            weak var weakSelf : SYQRCodeReader!
+
+            DispatchQueue.main.async(execute: { () -> Void in
+                weakSelf.setOverlayPickerView()
+                weakSelf.startSYQRCodeReading()
             })
         }
         else {
@@ -99,8 +122,8 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         }
     }
 
-    private func loadCaptureUI() -> Bool {
-        qrVideoPreviewLayer = SYAVCaptureVideoPreviewLayer(frame: CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT), rectOfInterest: getReaderViewBoundsWithSize(CGSizeMake(200, 200)), metadataObjectsDelegate: self)
+    fileprivate func loadCaptureUI() -> Bool {
+        qrVideoPreviewLayer = SYAVCaptureVideoPreviewLayer(frame: CGRect(x: 0, y: 0, width: kSCREEN_WIDTH, height: kSCREEN_HEIGHT), rectOfInterest: getReaderViewBoundsWithSize(CGSize(width: 200, height: 200)), metadataObjectsDelegate: self)
         
         if (qrVideoPreviewLayer.videoPreviewLayer == nil) {
             return false
@@ -110,37 +133,37 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         return true
     }
     
-    private func setOverlayPickerView() {
+    fileprivate func setOverlayPickerView() {
         vQRCode = SYQRCodeOverlayView(frame: CGRect(x: 0,y: 0,width: kSCREEN_WIDTH,height: kSCREEN_HEIGHT), baseLayer: qrVideoPreviewLayer.videoPreviewLayer)
         self.view.addSubview(vQRCode)
-        self.view.layer.insertSublayer(qrVideoPreviewLayer.videoPreviewLayer!, atIndex: 0)
+        self.view.layer.insertSublayer(qrVideoPreviewLayer.videoPreviewLayer!, at: 0)
         
         //添加过渡动画，类似微信
         let animationLayer = CAKeyframeAnimation.init(keyPath: "transform")
-        animationLayer.duration = 0.1;
+        animationLayer.duration = 0.1
         
         let values = NSMutableArray.init(capacity: 2)
-        values.addObject(NSValue(CATransform3D: CATransform3DMakeScale(0.1, 0.1, 1.0)))
-        values.addObject(NSValue(CATransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0)))
+        values.add(NSValue(caTransform3D: CATransform3DMakeScale(0.1, 0.1, 1.0)))
+        values.add(NSValue(caTransform3D: CATransform3DMakeScale(1.0, 1.0, 1.0)))
         animationLayer.values = values as [AnyObject]
-        qrVideoPreviewLayer.videoPreviewLayer!.addAnimation(animationLayer, forKey: nil)
+        qrVideoPreviewLayer.videoPreviewLayer!.add(animationLayer, forKey: nil)
         
         //添加导航栏
         self.createTopBar()
     }
 
     //权限受限
-    private func showUnAuthorizedTips(flag:Bool) {
+    fileprivate func showUnAuthorizedTips(_ flag:Bool) {
         if (_tipsLabel == nil) {
-            _tipsLabel = UILabel.init(frame: CGRectMake(8, 0, self.view.frame.size.width - 16, 300))
-            _tipsLabel.textAlignment = .Center
-            _tipsLabel.textColor = UIColor.blackColor()
+            _tipsLabel = UILabel.init(frame: CGRect(x: 8, y: 0, width: self.view.frame.size.width - 16, height: 300))
+            _tipsLabel.textAlignment = .center
+            _tipsLabel.textColor = UIColor.black
             _tipsLabel.numberOfLines = 0
-            _tipsLabel.userInteractionEnabled = true
+            _tipsLabel.isUserInteractionEnabled = true
             _tipsLabel.text = "请在'设置-隐私-相机\'选项中，\r允许APP访问你的相机。"
             self.view.addSubview(_tipsLabel)
 
-            let tapGes = UITapGestureRecognizer.init(target: self, action: Selector("_handleTipsTap"))
+            let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(SYQRCodeReader._handleTipsTap))
             _tipsLabel.addGestureRecognizer(tapGes)
         }
         
@@ -151,30 +174,30 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
             self.createTopBar()
         }
         
-        _tipsLabel.hidden = !flag
+        _tipsLabel.isHidden = !flag
     }
     
     func _handleTipsTap() {
-        UIApplication.sharedApplication().openURL(NSURL.init(string: "prefs:root")!)
+        UIApplication.shared.openURL(URL.init(string: "prefs:root")!)
     }
 
     //开始扫描
-    private func startSYQRCodeReading() {
+    fileprivate func startSYQRCodeReading() {
         qrSession.startRunning()
         _vActivityIndicator.stopAnimating()
 
         if _line == nil {
-            _line = UIImageView.init(frame: CGRectMake((kSCREEN_WIDTH - 216) / 2.0, kLineMinY, 216, 1))
+            _line = UIImageView.init(frame: CGRect(x: (kSCREEN_WIDTH - 216) / 2.0, y: kLineMinY, width: 216, height: 1))
             _line.image = UIImage.init(named: "qrcode_blueline")
             qrVideoPreviewLayer.videoPreviewLayer!.addSublayer(_line.layer)
         }
         
-        _lineTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 / 20, target: self, selector: Selector("animationLine"), userInfo: nil, repeats: true)
+        _lineTimer = Timer.scheduledTimer(timeInterval: 1.0 / 20, target: self, selector: #selector(SYQRCodeReader.animationLine), userInfo: nil, repeats: true)
         qrSession.startRunning()
     }
     
     //结束扫描
-    private func stopSYQRCodeReading() {
+    fileprivate func stopSYQRCodeReading() {
         if (_lineTimer != nil) {
             _lineTimer.invalidate()
             _lineTimer = nil
@@ -189,13 +212,13 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     }
     
     //取消扫描
-    private func cancleSYQRCodeReading() {
+    fileprivate func cancleSYQRCodeReading() {
         self.stopSYQRCodeReading()
         SYLog("cancle reading", classname: self)
     }
     
     //扫描代理
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         self.stopSYQRCodeReading()
         var fail = true
         
@@ -208,15 +231,15 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
             //        }
             let strResponse = responseObj.stringValue
             
-            if (strResponse != nil && strResponse != "" && !strResponse.characters.isEmpty) {
-                SYLog("qrcodestring=="+strResponse, classname: self)
+            if (strResponse != nil && strResponse != "" && !(strResponse?.characters.isEmpty)!) {
+                SYLog("qrcodestring=="+strResponse!, classname: self)
                 
-                if (strResponse.hasPrefix("http")) {
+                if (strResponse?.hasPrefix("http"))! {
                     fail = false
                     AudioServicesPlaySystemSound(1360)
-                    if self.suncessBlock != nil {
-                        let mqrcode = SYQRCodeModel.init(qrcodeValue: strResponse)
-                        self.suncessBlock!(self, mqrcode)
+                    if self.readerDelegate != nil {
+                        let mqrcode = SYQRCodeModel.init(qrcodeValue: strResponse!)
+                        self.readerDelegate.reader(reader: self, didReadModel: mqrcode, success: true)
                     }
                 }
             }
@@ -224,8 +247,9 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         
         if (fail) {
             SYLog("reading fail", classname: self)
-            if self.failBlock != nil {
-                self.failBlock!(self)
+            
+            if self.readerDelegate != nil {
+                self.readerDelegate.readerDidReadFail(reader: self)
             }
         }
     }
@@ -237,7 +261,7 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         if (flag) {
             frame.origin.y = kLineMinY
             flag = false
-            UIView.animateWithDuration(1.0 / 20, animations: { () -> Void in
+            UIView.animate(withDuration: 1.0 / 20, animations: { () -> Void in
                 frame.origin.y += 5
                 self._line.frame = frame
             })
@@ -250,7 +274,7 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
                     flag = true
                 }
                 else {
-                    UIView.animateWithDuration(1.0 / 20, animations: { () -> Void in
+                    UIView.animate(withDuration: 1.0 / 20, animations: { () -> Void in
                         frame.origin.y += 5
                         self._line.frame = frame
                     })
@@ -261,4 +285,10 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
             }
         }
     }
+}
+
+protocol SYQRCodeReaderSwiftDelegate : NSObjectProtocol {
+    @available(iOS 8.0, *)
+    func reader(reader : SYQRCodeReader!, didReadModel : SYQRCodeModel!, success : Bool)
+    func readerDidReadFail(reader : SYQRCodeReader!)
 }

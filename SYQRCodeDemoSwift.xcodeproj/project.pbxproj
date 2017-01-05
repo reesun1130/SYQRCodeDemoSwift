@@ -23,6 +23,7 @@
 		1C1E952B1D7E8BF500C71655 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E95291D7E8BF500C71655 /* Main.storyboard */; };
 		1C1E952D1D7E8BF500C71655 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E952C1D7E8BF500C71655 /* Assets.xcassets */; };
 		1C1E95301D7E8BF500C71655 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E952E1D7E8BF500C71655 /* LaunchScreen.storyboard */; };
+		1C45F9AE1E1DF12000F5E784 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E95311D7E8BF500C71655 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,11 +133,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = SY;
 				TargetAttributes = {
 					1C1E95211D7E8BF500C71655 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 97UX6JDSHT;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -165,6 +169,7 @@
 			files = (
 				1C05AE2E1D7FF6BA00A80984 /* qrcodelogo.png in Resources */,
 				1C05AE241D7FE63700A80984 /* qrcode_blueline@2x.png in Resources */,
+				1C45F9AE1E1DF12000F5E784 /* Info.plist in Resources */,
 				1C05AE261D7FE63700A80984 /* qrcode_corner@2x.png in Resources */,
 				1C1E95301D7E8BF500C71655 /* LaunchScreen.storyboard in Resources */,
 				1C1E952D1D7E8BF500C71655 /* Assets.xcassets in Resources */,
@@ -227,8 +232,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -250,7 +257,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -272,8 +279,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -289,9 +298,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -301,12 +311,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 97UX6JDSHT;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = SYQRCodeDemoSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_SWIFT_FLAGS[arch=*]" = "-DSY_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy.SYQRCodeDemoSwifter;
+				"OTHER_SWIFT_FLAGS[arch=*]" = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy.SYQRCodeDemoSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f7bd207c-5d37-4e96-af34-b2ce56c7c721";
+				PROVISIONING_PROFILE_SPECIFIER = "XC Ad Hoc: *";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -314,11 +330,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 97UX6JDSHT;
 				INFOPLIST_FILE = SYQRCodeDemoSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy.SYQRCodeDemoSwifter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy.SYQRCodeDemoSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f7bd207c-5d37-4e96-af34-b2ce56c7c721";
+				PROVISIONING_PROFILE_SPECIFIER = "XC Ad Hoc: *";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

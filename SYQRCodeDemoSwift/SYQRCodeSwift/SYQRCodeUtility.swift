@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 import AVFoundation
 
-func SYLog<T>(message : T,methodName: String = __FUNCTION__, lineNumber: Int = __LINE__) {
+public func SYLog<T>(_ message : T,methodName: String = #function, lineNumber: Int = #line) {
     #if SY_DEBUG
         print("\(methodName).[\(lineNumber)]:\(message)")
     #endif
 }
 
-func SYLog<T>(message : T,methodName: String = __FUNCTION__, lineNumber: Int = __LINE__, classname: AnyObject!) {
+public func SYLog<T>(_ message : T,methodName: String = #function, lineNumber: Int = #line, classname: AnyObject!) {
     #if SY_DEBUG
         var classnameTemp = ""
         
@@ -27,8 +27,8 @@ func SYLog<T>(message : T,methodName: String = __FUNCTION__, lineNumber: Int = _
     #endif
 }
 
-func kIOS8_OR_LATER()-> Bool {
-    if NSProcessInfo().isOperatingSystemAtLeastVersion(NSOperatingSystemVersion(majorVersion:
+public func kIOS8_OR_LATER()-> Bool {
+    if ProcessInfo().isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion:
         8, minorVersion: 0, patchVersion: 0)) {
             print("kIOS8_OR_LATER")
             return true
@@ -37,8 +37,8 @@ func kIOS8_OR_LATER()-> Bool {
     return false
 }
 
-func kIOS9_OR_LATER()-> Bool {
-    if NSProcessInfo().isOperatingSystemAtLeastVersion(NSOperatingSystemVersion(majorVersion:
+public func kIOS9_OR_LATER()-> Bool {
+    if ProcessInfo().isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion:
         9, minorVersion: 0, patchVersion: 0)) {
             print("kIOS9_OR_LATER")
             return true
@@ -47,48 +47,29 @@ func kIOS9_OR_LATER()-> Bool {
     return false
 }
 
-func DEGREES_TO_RADIANS(degrees:Double)-> CGFloat {
+public func DEGREES_TO_RADIANS(_ degrees:Double)-> CGFloat {
     return CGFloat(degrees * M_PI / 180.0)
 }
 
-func alert(title:String!, msg:String!) {
+public func alertInfo(_ title:String!, msg:String!) {
     let vAlert = UIAlertView.init(title: title, message: msg, delegate: nil, cancelButtonTitle: "确定")
     vAlert.show()
 }
 
-func canAccessAVCaptureDeviceForMediaType(mediaType: String) -> Bool {
-    var canAccess = false
-    let status = AVCaptureDevice.authorizationStatusForMediaType(mediaType)
-    
-    if (status == .NotDetermined) {
-        let dis_sema = dispatch_semaphore_create(0)
-        AVCaptureDevice.requestAccessForMediaType(mediaType, completionHandler: { (granted:Bool) -> Void in
-            dispatch_semaphore_signal(dis_sema);
-            canAccess = granted
-        })
-        dispatch_semaphore_wait(dis_sema, DISPATCH_TIME_FOREVER);
-    }
-    else if (status == .Authorized) {
-        canAccess = true
-    }
-    
-    return canAccess
+public func getReaderViewBoundsWithSize(_ asize:CGSize) -> CGRect {
+    return CGRect(x: kLineMinY / kSCREEN_HEIGHT, y: ((kSCREEN_WIDTH - asize.width) / 2.0) / kSCREEN_WIDTH, width: asize.height / kSCREEN_HEIGHT, height: asize.width / kSCREEN_WIDTH)
 }
 
-func getReaderViewBoundsWithSize(asize:CGSize) -> CGRect {
-    return CGRectMake(kLineMinY / kSCREEN_HEIGHT, ((kSCREEN_WIDTH - asize.width) / 2.0) / kSCREEN_WIDTH, asize.height / kSCREEN_HEIGHT, asize.width / kSCREEN_WIDTH)
-}
-
-func generateQRCodeImage(strQRCode:String,strLogo:String!)->UIImage {
-    let stringData = strQRCode.dataUsingEncoding(NSUTF8StringEncoding)
+public func generateQRCodeImage(_ strQRCode:String,strLogo:String!)->UIImage {
+    let stringData = strQRCode.data(using: String.Encoding.utf8)
     
     //生成
     let qrFilter = CIFilter.init(name: "CIQRCodeGenerator")
     qrFilter?.setValue(stringData, forKey: "inputMessage")
     qrFilter?.setValue("M", forKey: "inputCorrectionLevel")
 
-    let onColor = UIColor.whiteColor()
-    let offColor = UIColor.darkGrayColor()
+    let onColor = UIColor.white
+    let offColor = UIColor.darkGray
     
     //上色
     let colorFilter = CIFilter.init(name: "CIFalseColor")
@@ -97,44 +78,44 @@ func generateQRCodeImage(strQRCode:String,strLogo:String!)->UIImage {
     colorFilter!.setValue(CIColor(color: offColor), forKey: "inputColor1")
     
     //绘制
-    let qrcodeImage = UIImage(CIImage: colorFilter!.outputImage!
-        .imageByApplyingTransform(CGAffineTransformMakeScale(5, 5)))
+    let qrcodeImage = UIImage(ciImage: colorFilter!.outputImage!
+        .applying(CGAffineTransform(scaleX: 5, y: 5)))
     
     //中间logo
     if strLogo != nil {
         let logoImage = UIImage(named: strLogo)
         
         if logoImage != nil {
-            let qrcodeRect = CGRectMake(0, 0, qrcodeImage.size.width, qrcodeImage.size.height)
+            let qrcodeRect = CGRect(x: 0, y: 0, width: qrcodeImage.size.width, height: qrcodeImage.size.height)
 
             UIGraphicsBeginImageContext(qrcodeRect.size)
-            qrcodeImage.drawInRect(qrcodeRect)
+            qrcodeImage.draw(in: qrcodeRect)
             
-            let logoSize = CGSizeMake(qrcodeRect.size.width * 0.25, qrcodeRect.size.height * 0.25)
+            let logoSize = CGSize(width: qrcodeRect.size.width * 0.25, height: qrcodeRect.size.height * 0.25)
             let x = (qrcodeRect.width - logoSize.width) * 0.5
             let y = (qrcodeRect.height - logoSize.height) * 0.5
             
             //logo draw
-            logoImage!.drawInRect(CGRectMake(x, y, logoSize.width, logoSize.height))
+            logoImage!.draw(in: CGRect(x: x, y: y, width: logoSize.width, height: logoSize.height))
             
             let resultImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
-            return resultImage
+            return resultImage!
         }
     }
     return qrcodeImage
 }
 
-func readQRCodeImage(imagePicked:UIImage)->String! {
+public func readQRCodeImage(_ imagePicked:UIImage)->String! {
     let qrcodeImage : CIImage = CIImage(image: imagePicked)!
     let qrcodeContext = CIContext(options: nil)
     
     //检测图片中的二维码，并设置检测精度为高
-    let qrcodeDetector : CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: qrcodeContext, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])
+    let qrcodeDetector : CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: qrcodeContext, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])!
     
     //读取图片的qrcode特性
-    let qrcodeFeatures = qrcodeDetector.featuresInImage(qrcodeImage)
+    let qrcodeFeatures = qrcodeDetector.features(in: qrcodeImage)
     
     //返回的结果，只读取第一条
     var qrcodeResultString : String! = nil

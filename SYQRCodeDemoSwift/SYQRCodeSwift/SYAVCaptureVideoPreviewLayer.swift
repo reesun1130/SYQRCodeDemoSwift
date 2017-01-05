@@ -8,7 +8,7 @@
 
 import AVFoundation
 
-class SYAVCaptureVideoPreviewLayer : NSObject {
+public class SYAVCaptureVideoPreviewLayer : NSObject {
     var videoPreviewLayer : AVCaptureVideoPreviewLayer?
     var session : AVCaptureSession?
     
@@ -19,8 +19,8 @@ class SYAVCaptureVideoPreviewLayer : NSObject {
         var input : AVCaptureDeviceInput?
         var output : AVCaptureMetadataOutput?
 
-        for capDevice in AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) {
-            if (capDevice.position == AVCaptureDevicePosition.Back) {
+        for capDevice in AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo) {
+            if ((capDevice as AnyObject).position == AVCaptureDevicePosition.back) {
                 captureDevice = capDevice as? AVCaptureDevice
             }
         }
@@ -30,7 +30,7 @@ class SYAVCaptureVideoPreviewLayer : NSObject {
         }
         
         if (!captureDevice!.hasTorch) {
-            alert("当前设备没有闪光灯",msg: nil)
+            alertInfo("当前设备没有闪光灯",msg: nil)
         }
         
         let mSession = AVCaptureSession()
@@ -60,7 +60,7 @@ class SYAVCaptureVideoPreviewLayer : NSObject {
         mSession.addInput(input)
         
         output = AVCaptureMetadataOutput.init()
-        output!.setMetadataObjectsDelegate(metadataObjectsDelegate, queue: dispatch_get_main_queue())
+        output!.setMetadataObjectsDelegate(metadataObjectsDelegate, queue: DispatchQueue.main)
         output!.rectOfInterest = rectOfInterest
         
         if mSession.canAddOutput(output) {
@@ -72,9 +72,9 @@ class SYAVCaptureVideoPreviewLayer : NSObject {
         
         var availableQRCodeType : Bool = false
         
-        for availableType : AnyObject in output!.availableMetadataObjectTypes {
+        for availableType : Any in output!.availableMetadataObjectTypes {
             if (availableType is String) {
-                if availableType.lowercaseString.containsString("qrcode") {
+                if (availableType as AnyObject).lowercased.contains("qrcode") {
                     availableQRCodeType = true
                     SYLog(availableType)
                     
@@ -96,7 +96,7 @@ class SYAVCaptureVideoPreviewLayer : NSObject {
         session = mSession;
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

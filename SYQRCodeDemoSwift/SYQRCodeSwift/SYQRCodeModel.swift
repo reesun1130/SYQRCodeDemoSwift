@@ -8,14 +8,14 @@
 
 import Foundation
 
-class SYQRCodeModel : NSObject {
-    var qrcodeValue : String?
+public class SYQRCodeModel : NSObject {
+    public var qrcodeValue : String?
     
-    init (qrcodeValue : String) {
+    public init (qrcodeValue : String) {
         self.qrcodeValue = qrcodeValue
     }
 
-    func describe() -> String {
+    public func describe() -> String {
         return "SYQRCodeModel：qrcodeValue==" + self.qrcodeValue!
     }
 }

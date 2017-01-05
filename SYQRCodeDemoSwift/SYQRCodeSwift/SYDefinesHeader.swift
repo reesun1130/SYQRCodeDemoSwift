@@ -17,7 +17,7 @@ public let kReaderViewHeight : CGFloat = 259.0
 //public let BTN_TAG : CGFloat = 100000.0
 
 //screen defines
-public let kSCREEN_BOUNDS = UIScreen.mainScreen().bounds
+public let kSCREEN_BOUNDS = UIScreen.main.bounds
 public let kSCREEN_SIZE = kSCREEN_BOUNDS.size
 public let kSCREEN_WIDTH = kSCREEN_SIZE.width
 public let kSCREEN_HEIGHT = kSCREEN_SIZE.height
