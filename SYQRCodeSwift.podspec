@@ -21,7 +21,7 @@ s.source       = { :git => "https://github.com/reesun1130/SYQRCodeDemoSwift.git"
 s.platform     = :ios, "8.0"
 s.requires_arc = true
 
-s.source_files  = 'SYQRCodeDemoSwift/SYQRCodeSwift/*.swift', 'SYQRCodeDemoSwift/SYQRCodeSwift/*.png'
+s.source_files  = 'SYQRCodeDemoSwift/SYQRCodeSwift/*.{swift,png}'
 
 s.frameworks = 'UIKit', 'AVFoundation', 'Foundation'
 s.module_name = 'SYQRCodeSwift'
