@@ -13,17 +13,17 @@ oc实现: https://github.com/reesun1130/SYQRCodeDemo
 DESC
 
 s.homepage     = "https://github.com/reesun1130/SYQRCodeDemoSwift"
+
 s.license      = { :type => 'MIT', :file => 'LICENSE_SY.txt' }
 s.author       = { "reesun" => "ree.sun.cn@hotmail.com" }
 
-s.source       = { :git => "https://github.com/reesun1130/SYQRCodeDemoSwift.git" }
+s.source       = { :git => "https://github.com/reesun1130/SYQRCodeDemoSwift.git", :tag => s.version }
+s.source_files = "SYQRCodeDemoSwift/SYQRCodeSwift/*.{swift,png}"
 
 s.platform     = :ios, "8.0"
 s.requires_arc = true
+s.frameworks   = "UIKit", "AVFoundation", "Foundation"
 
-s.source_files  = 'SYQRCodeDemoSwift/SYQRCodeSwift/*.{swift,png}'
-
-s.frameworks = 'UIKit', 'AVFoundation', 'Foundation'
-s.module_name = 'SYQRCodeSwift'
+s.module_name  = "SYQRCodeSwift"
 
 end
