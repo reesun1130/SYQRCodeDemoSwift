@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-s.name         = "SYQRCodeDemoSwift"
+s.name         = "SYQRCodeSwift"
 s.version      = "1.0.1"
 s.summary      = "SY QRCode Demo Swift，二维码扫描Swift实现，原生API，iOS8+"
 s.description  = <<-DESC
