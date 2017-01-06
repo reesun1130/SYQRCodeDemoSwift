@@ -7,37 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C05AE241D7FE63700A80984 /* qrcode_blueline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C05AE1A1D7FE63700A80984 /* qrcode_blueline@2x.png */; };
-		1C05AE251D7FE63700A80984 /* qrcode_blueline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C05AE1B1D7FE63700A80984 /* qrcode_blueline@3x.png */; };
-		1C05AE261D7FE63700A80984 /* qrcode_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C05AE1C1D7FE63700A80984 /* qrcode_corner@2x.png */; };
-		1C05AE271D7FE63700A80984 /* qrcode_corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C05AE1D1D7FE63700A80984 /* qrcode_corner@3x.png */; };
-		1C05AE281D7FE63700A80984 /* SYDefinesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05AE1E1D7FE63700A80984 /* SYDefinesHeader.swift */; };
-		1C05AE291D7FE63700A80984 /* SYQRCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05AE1F1D7FE63700A80984 /* SYQRCodeModel.swift */; };
-		1C05AE2A1D7FE63700A80984 /* SYQRCodeOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05AE201D7FE63700A80984 /* SYQRCodeOverlayView.swift */; };
-		1C05AE2B1D7FE63700A80984 /* SYQRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05AE211D7FE63700A80984 /* SYQRCodeReader.swift */; };
-		1C05AE2C1D7FE63700A80984 /* SYQRCodeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05AE221D7FE63700A80984 /* SYQRCodeUtility.swift */; };
 		1C05AE2E1D7FF6BA00A80984 /* qrcodelogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C05AE2D1D7FF6BA00A80984 /* qrcodelogo.png */; };
-		1C0EA2F41D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0EA2F31D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift */; };
 		1C1E95261D7E8BF500C71655 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E95251D7E8BF500C71655 /* AppDelegate.swift */; };
 		1C1E95281D7E8BF500C71655 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E95271D7E8BF500C71655 /* ViewController.swift */; };
 		1C1E952B1D7E8BF500C71655 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E95291D7E8BF500C71655 /* Main.storyboard */; };
 		1C1E952D1D7E8BF500C71655 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E952C1D7E8BF500C71655 /* Assets.xcassets */; };
 		1C1E95301D7E8BF500C71655 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E952E1D7E8BF500C71655 /* LaunchScreen.storyboard */; };
 		1C45F9AE1E1DF12000F5E784 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E95311D7E8BF500C71655 /* Info.plist */; };
+		1CEAF6541E1F3EEE00683F00 /* qrcode_blueline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEAF64A1E1F3EEE00683F00 /* qrcode_blueline@2x.png */; };
+		1CEAF6551E1F3EEE00683F00 /* qrcode_blueline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEAF64B1E1F3EEE00683F00 /* qrcode_blueline@3x.png */; };
+		1CEAF6561E1F3EEE00683F00 /* qrcode_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEAF64C1E1F3EEE00683F00 /* qrcode_corner@2x.png */; };
+		1CEAF6571E1F3EEE00683F00 /* qrcode_corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEAF64D1E1F3EEE00683F00 /* qrcode_corner@3x.png */; };
+		1CEAF6581E1F3EEE00683F00 /* SYAVCaptureVideoPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF64E1E1F3EEE00683F00 /* SYAVCaptureVideoPreviewLayer.swift */; };
+		1CEAF6591E1F3EEE00683F00 /* SYDefinesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF64F1E1F3EEE00683F00 /* SYDefinesHeader.swift */; };
+		1CEAF65A1E1F3EEE00683F00 /* SYQRCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF6501E1F3EEE00683F00 /* SYQRCodeModel.swift */; };
+		1CEAF65B1E1F3EEE00683F00 /* SYQRCodeOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF6511E1F3EEE00683F00 /* SYQRCodeOverlayView.swift */; };
+		1CEAF65C1E1F3EEE00683F00 /* SYQRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF6521E1F3EEE00683F00 /* SYQRCodeReader.swift */; };
+		1CEAF65D1E1F3EEE00683F00 /* SYQRCodeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF6531E1F3EEE00683F00 /* SYQRCodeUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C05AE1A1D7FE63700A80984 /* qrcode_blueline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_blueline@2x.png"; sourceTree = "<group>"; };
-		1C05AE1B1D7FE63700A80984 /* qrcode_blueline@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_blueline@3x.png"; sourceTree = "<group>"; };
-		1C05AE1C1D7FE63700A80984 /* qrcode_corner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_corner@2x.png"; sourceTree = "<group>"; };
-		1C05AE1D1D7FE63700A80984 /* qrcode_corner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_corner@3x.png"; sourceTree = "<group>"; };
-		1C05AE1E1D7FE63700A80984 /* SYDefinesHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYDefinesHeader.swift; sourceTree = "<group>"; };
-		1C05AE1F1D7FE63700A80984 /* SYQRCodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeModel.swift; sourceTree = "<group>"; };
-		1C05AE201D7FE63700A80984 /* SYQRCodeOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeOverlayView.swift; sourceTree = "<group>"; };
-		1C05AE211D7FE63700A80984 /* SYQRCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeReader.swift; sourceTree = "<group>"; };
-		1C05AE221D7FE63700A80984 /* SYQRCodeUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeUtility.swift; sourceTree = "<group>"; };
 		1C05AE2D1D7FF6BA00A80984 /* qrcodelogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcodelogo.png; sourceTree = "<group>"; };
-		1C0EA2F31D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYAVCaptureVideoPreviewLayer.swift; sourceTree = "<group>"; };
 		1C1E95221D7E8BF500C71655 /* SYQRCodeDemoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYQRCodeDemoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C1E95251D7E8BF500C71655 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C1E95271D7E8BF500C71655 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +35,16 @@
 		1C1E952C1D7E8BF500C71655 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C1E952F1D7E8BF500C71655 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C1E95311D7E8BF500C71655 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CEAF64A1E1F3EEE00683F00 /* qrcode_blueline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_blueline@2x.png"; sourceTree = "<group>"; };
+		1CEAF64B1E1F3EEE00683F00 /* qrcode_blueline@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_blueline@3x.png"; sourceTree = "<group>"; };
+		1CEAF64C1E1F3EEE00683F00 /* qrcode_corner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_corner@2x.png"; sourceTree = "<group>"; };
+		1CEAF64D1E1F3EEE00683F00 /* qrcode_corner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_corner@3x.png"; sourceTree = "<group>"; };
+		1CEAF64E1E1F3EEE00683F00 /* SYAVCaptureVideoPreviewLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYAVCaptureVideoPreviewLayer.swift; sourceTree = "<group>"; };
+		1CEAF64F1E1F3EEE00683F00 /* SYDefinesHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYDefinesHeader.swift; sourceTree = "<group>"; };
+		1CEAF6501E1F3EEE00683F00 /* SYQRCodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeModel.swift; sourceTree = "<group>"; };
+		1CEAF6511E1F3EEE00683F00 /* SYQRCodeOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeOverlayView.swift; sourceTree = "<group>"; };
+		1CEAF6521E1F3EEE00683F00 /* SYQRCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeReader.swift; sourceTree = "<group>"; };
+		1CEAF6531E1F3EEE00683F00 /* SYQRCodeUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,26 +58,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C05AE181D7FE63700A80984 /* SYQRCodeSwift */ = {
-			isa = PBXGroup;
-			children = (
-				1C05AE211D7FE63700A80984 /* SYQRCodeReader.swift */,
-				1C05AE1E1D7FE63700A80984 /* SYDefinesHeader.swift */,
-				1C05AE1F1D7FE63700A80984 /* SYQRCodeModel.swift */,
-				1C05AE221D7FE63700A80984 /* SYQRCodeUtility.swift */,
-				1C05AE201D7FE63700A80984 /* SYQRCodeOverlayView.swift */,
-				1C0EA2F31D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift */,
-				1C05AE1A1D7FE63700A80984 /* qrcode_blueline@2x.png */,
-				1C05AE1B1D7FE63700A80984 /* qrcode_blueline@3x.png */,
-				1C05AE1C1D7FE63700A80984 /* qrcode_corner@2x.png */,
-				1C05AE1D1D7FE63700A80984 /* qrcode_corner@3x.png */,
-			);
-			path = SYQRCodeSwift;
-			sourceTree = "<group>";
-		};
 		1C1E95191D7E8BF500C71655 = {
 			isa = PBXGroup;
 			children = (
+				1CEAF6491E1F3EEE00683F00 /* SYQRCodeSwift */,
 				1C1E95241D7E8BF500C71655 /* SYQRCodeDemoSwift */,
 				1C1E95231D7E8BF500C71655 /* Products */,
 			);
@@ -94,7 +78,6 @@
 		1C1E95241D7E8BF500C71655 /* SYQRCodeDemoSwift */ = {
 			isa = PBXGroup;
 			children = (
-				1C05AE181D7FE63700A80984 /* SYQRCodeSwift */,
 				1C1E95251D7E8BF500C71655 /* AppDelegate.swift */,
 				1C1E95271D7E8BF500C71655 /* ViewController.swift */,
 				1C1E95291D7E8BF500C71655 /* Main.storyboard */,
@@ -104,6 +87,23 @@
 				1C05AE2D1D7FF6BA00A80984 /* qrcodelogo.png */,
 			);
 			path = SYQRCodeDemoSwift;
+			sourceTree = "<group>";
+		};
+		1CEAF6491E1F3EEE00683F00 /* SYQRCodeSwift */ = {
+			isa = PBXGroup;
+			children = (
+				1CEAF64A1E1F3EEE00683F00 /* qrcode_blueline@2x.png */,
+				1CEAF64B1E1F3EEE00683F00 /* qrcode_blueline@3x.png */,
+				1CEAF64C1E1F3EEE00683F00 /* qrcode_corner@2x.png */,
+				1CEAF64D1E1F3EEE00683F00 /* qrcode_corner@3x.png */,
+				1CEAF64E1E1F3EEE00683F00 /* SYAVCaptureVideoPreviewLayer.swift */,
+				1CEAF64F1E1F3EEE00683F00 /* SYDefinesHeader.swift */,
+				1CEAF6501E1F3EEE00683F00 /* SYQRCodeModel.swift */,
+				1CEAF6511E1F3EEE00683F00 /* SYQRCodeOverlayView.swift */,
+				1CEAF6521E1F3EEE00683F00 /* SYQRCodeReader.swift */,
+				1CEAF6531E1F3EEE00683F00 /* SYQRCodeUtility.swift */,
+			);
+			path = SYQRCodeSwift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,15 +167,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CEAF6551E1F3EEE00683F00 /* qrcode_blueline@3x.png in Resources */,
+				1CEAF6541E1F3EEE00683F00 /* qrcode_blueline@2x.png in Resources */,
 				1C05AE2E1D7FF6BA00A80984 /* qrcodelogo.png in Resources */,
-				1C05AE241D7FE63700A80984 /* qrcode_blueline@2x.png in Resources */,
 				1C45F9AE1E1DF12000F5E784 /* Info.plist in Resources */,
-				1C05AE261D7FE63700A80984 /* qrcode_corner@2x.png in Resources */,
 				1C1E95301D7E8BF500C71655 /* LaunchScreen.storyboard in Resources */,
 				1C1E952D1D7E8BF500C71655 /* Assets.xcassets in Resources */,
 				1C1E952B1D7E8BF500C71655 /* Main.storyboard in Resources */,
-				1C05AE271D7FE63700A80984 /* qrcode_corner@3x.png in Resources */,
-				1C05AE251D7FE63700A80984 /* qrcode_blueline@3x.png in Resources */,
+				1CEAF6571E1F3EEE00683F00 /* qrcode_corner@3x.png in Resources */,
+				1CEAF6561E1F3EEE00683F00 /* qrcode_corner@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,14 +186,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C0EA2F41D8681DE00667F87 /* SYAVCaptureVideoPreviewLayer.swift in Sources */,
-				1C05AE291D7FE63700A80984 /* SYQRCodeModel.swift in Sources */,
 				1C1E95281D7E8BF500C71655 /* ViewController.swift in Sources */,
-				1C05AE2A1D7FE63700A80984 /* SYQRCodeOverlayView.swift in Sources */,
+				1CEAF65A1E1F3EEE00683F00 /* SYQRCodeModel.swift in Sources */,
+				1CEAF6581E1F3EEE00683F00 /* SYAVCaptureVideoPreviewLayer.swift in Sources */,
+				1CEAF65B1E1F3EEE00683F00 /* SYQRCodeOverlayView.swift in Sources */,
 				1C1E95261D7E8BF500C71655 /* AppDelegate.swift in Sources */,
-				1C05AE281D7FE63700A80984 /* SYDefinesHeader.swift in Sources */,
-				1C05AE2C1D7FE63700A80984 /* SYQRCodeUtility.swift in Sources */,
-				1C05AE2B1D7FE63700A80984 /* SYQRCodeReader.swift in Sources */,
+				1CEAF6591E1F3EEE00683F00 /* SYDefinesHeader.swift in Sources */,
+				1CEAF65D1E1F3EEE00683F00 /* SYQRCodeUtility.swift in Sources */,
+				1CEAF65C1E1F3EEE00683F00 /* SYQRCodeReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
