@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     fileprivate var vQRCode : SYQRCodeOverlayView!
     fileprivate var qrVideoPreviewLayer : SYAVCaptureVideoPreviewLayer!
     fileprivate var qrSession : AVCaptureSession!
@@ -31,7 +31,7 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
 //    required public init?(coder aDecoder: NSCoder) {
 //        super.init(coder: aDecoder)
 //    }
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
 
@@ -51,7 +51,7 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         }
     }
     
-    open func setReaderDelegate(_ readerDelegate: SYQRCodeReaderSwiftDelegate!) {
+    func setReaderDelegate(_ readerDelegate: SYQRCodeReaderSwiftDelegate!) {
         self.readerDelegate = readerDelegate
     }
     
@@ -59,7 +59,7 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         var canAccess = false
         let status = AVCaptureDevice.authorizationStatus(forMediaType: mediaType)
         
-        weak var weakSelf : SYQRCodeReader!
+        weak var weakSelf : SYQRCodeReader! = self
         
         if (status == .notDetermined) {
             let dis_sema = DispatchSemaphore(value: 0)
@@ -68,7 +68,7 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
                 canAccess = granted
                 
                 DispatchQueue.main.async {
-                    weakSelf.showUnAuthorizedTips(canAccess)
+                    weakSelf.showUnAuthorizedTips(!canAccess)
                 }
             })
             _ = dis_sema.wait(timeout: DispatchTime.distantFuture)
@@ -76,7 +76,7 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
         else if (status == .authorized) {
             canAccess = true
         }
-        
+                
         return canAccess
     }
 
@@ -218,7 +218,7 @@ class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDelegate 
     }
     
     //扫描代理
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         self.stopSYQRCodeReading()
         var fail = true
         
