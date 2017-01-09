@@ -8,7 +8,7 @@
 
 import AVFoundation
 
-public class SYAVCaptureVideoPreviewLayer : NSObject {
+class SYAVCaptureVideoPreviewLayer : NSObject {
     var videoPreviewLayer : AVCaptureVideoPreviewLayer?
     var session : AVCaptureSession?
     
@@ -96,7 +96,7 @@ public class SYAVCaptureVideoPreviewLayer : NSObject {
         session = mSession;
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

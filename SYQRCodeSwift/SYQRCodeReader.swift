@@ -51,11 +51,11 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
         }
     }
     
-    func setReaderDelegate(_ readerDelegate: SYQRCodeReaderSwiftDelegate!) {
+    public func setReaderDelegate(_ readerDelegate: SYQRCodeReaderSwiftDelegate!) {
         self.readerDelegate = readerDelegate
     }
     
-    func canAccessAVCaptureDeviceForMediaType(_ mediaType: String) -> Bool {
+    private func canAccessAVCaptureDeviceForMediaType(_ mediaType: String) -> Bool {
         var canAccess = false
         let status = AVCaptureDevice.authorizationStatus(forMediaType: mediaType)
         
@@ -81,7 +81,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     }
 
     //头
-    fileprivate func createTopBar() {
+    private func createTopBar() {
         if btnBack == nil {
             btnBack = UIButton.init(frame: CGRect(x: 0, y: 0, width: 60, height: 64))
             btnBack.setTitle("关闭", for: UIControlState())
@@ -97,7 +97,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     //提示符
-    fileprivate func createLoadingIndicator() {
+    private func createLoadingIndicator() {
         _vActivityIndicator = UIActivityIndicatorView.init(frame: CGRect(x: (kSCREEN_WIDTH - 100) / 2.0, y: (kSCREEN_HEIGHT - 164)  / 2.0, width: 100, height: 100))
         _vActivityIndicator.hidesWhenStopped = true
         _vActivityIndicator.backgroundColor = UIColor.red
@@ -106,7 +106,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     //扫描视图
-    fileprivate func displayScanView() {
+    private func displayScanView() {
         if self.loadCaptureUI() {
             self.showUnAuthorizedTips(false)
 
@@ -122,7 +122,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
         }
     }
 
-    fileprivate func loadCaptureUI() -> Bool {
+    private func loadCaptureUI() -> Bool {
         qrVideoPreviewLayer = SYAVCaptureVideoPreviewLayer(frame: CGRect(x: 0, y: 0, width: kSCREEN_WIDTH, height: kSCREEN_HEIGHT), rectOfInterest: getReaderViewBoundsWithSize(CGSize(width: 200, height: 200)), metadataObjectsDelegate: self)
         
         if (qrVideoPreviewLayer.videoPreviewLayer == nil) {
@@ -133,7 +133,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
         return true
     }
     
-    fileprivate func setOverlayPickerView() {
+    private func setOverlayPickerView() {
         vQRCode = SYQRCodeOverlayView(frame: CGRect(x: 0,y: 0,width: kSCREEN_WIDTH,height: kSCREEN_HEIGHT), baseLayer: qrVideoPreviewLayer.videoPreviewLayer)
         self.view.addSubview(vQRCode)
         self.view.layer.insertSublayer(qrVideoPreviewLayer.videoPreviewLayer!, at: 0)
@@ -153,7 +153,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     }
 
     //权限受限
-    fileprivate func showUnAuthorizedTips(_ flag:Bool) {
+    func showUnAuthorizedTips(_ flag:Bool) {
         if (_tipsLabel == nil) {
             _tipsLabel = UILabel.init(frame: CGRect(x: 8, y: 0, width: self.view.frame.size.width - 16, height: 300))
             _tipsLabel.textAlignment = .center
@@ -163,7 +163,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
             _tipsLabel.text = "请在'设置-隐私-相机\'选项中，\r允许APP访问你的相机。"
             self.view.addSubview(_tipsLabel)
 
-            let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(SYQRCodeReader._handleTipsTap))
+            let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(SYQRCodeReader.handleTipsTap))
             _tipsLabel.addGestureRecognizer(tapGes)
         }
         
@@ -177,12 +177,12 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
         _tipsLabel.isHidden = !flag
     }
     
-    func _handleTipsTap() {
+    func handleTipsTap() {
         UIApplication.shared.openURL(URL.init(string: "prefs:root")!)
     }
 
     //开始扫描
-    fileprivate func startSYQRCodeReading() {
+    public func startSYQRCodeReading() {
         qrSession.startRunning()
         _vActivityIndicator.stopAnimating()
 
@@ -197,7 +197,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     //结束扫描
-    fileprivate func stopSYQRCodeReading() {
+    public func stopSYQRCodeReading() {
         if (_lineTimer != nil) {
             _lineTimer.invalidate()
             _lineTimer = nil
@@ -212,7 +212,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     //取消扫描
-    fileprivate func cancleSYQRCodeReading() {
+    public func cancleSYQRCodeReading() {
         self.stopSYQRCodeReading()
         SYLog("cancle reading", classname: self)
     }

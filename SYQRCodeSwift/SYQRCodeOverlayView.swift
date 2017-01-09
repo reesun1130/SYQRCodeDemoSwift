@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-public class SYQRCodeOverlayView : UIView {
+class SYQRCodeOverlayView : UIView {
     var baseLayer : AVCaptureVideoPreviewLayer?
     
     init (frame: CGRect, baseLayer : AVCaptureVideoPreviewLayer!) {
@@ -18,7 +18,7 @@ public class SYQRCodeOverlayView : UIView {
         self.createSubViews()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
