@@ -287,7 +287,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     }
 }
 
-protocol SYQRCodeReaderSwiftDelegate : NSObjectProtocol {
+public protocol SYQRCodeReaderSwiftDelegate : NSObjectProtocol {
     @available(iOS 8.0, *)
     func reader(reader : SYQRCodeReader!, didReadModel : SYQRCodeModel!, success : Bool)
     func readerDidReadFail(reader : SYQRCodeReader!)

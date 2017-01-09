@@ -13,7 +13,6 @@
 		1C1E952B1D7E8BF500C71655 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E95291D7E8BF500C71655 /* Main.storyboard */; };
 		1C1E952D1D7E8BF500C71655 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E952C1D7E8BF500C71655 /* Assets.xcassets */; };
 		1C1E95301D7E8BF500C71655 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E952E1D7E8BF500C71655 /* LaunchScreen.storyboard */; };
-		1C45F9AE1E1DF12000F5E784 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E95311D7E8BF500C71655 /* Info.plist */; };
 		1CEAF6541E1F3EEE00683F00 /* qrcode_blueline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEAF64A1E1F3EEE00683F00 /* qrcode_blueline@2x.png */; };
 		1CEAF6551E1F3EEE00683F00 /* qrcode_blueline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEAF64B1E1F3EEE00683F00 /* qrcode_blueline@3x.png */; };
 		1CEAF6561E1F3EEE00683F00 /* qrcode_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CEAF64C1E1F3EEE00683F00 /* qrcode_corner@2x.png */; };
@@ -170,7 +169,6 @@
 				1CEAF6551E1F3EEE00683F00 /* qrcode_blueline@3x.png in Resources */,
 				1CEAF6541E1F3EEE00683F00 /* qrcode_blueline@2x.png in Resources */,
 				1C05AE2E1D7FF6BA00A80984 /* qrcodelogo.png in Resources */,
-				1C45F9AE1E1DF12000F5E784 /* Info.plist in Resources */,
 				1C1E95301D7E8BF500C71655 /* LaunchScreen.storyboard in Resources */,
 				1C1E952D1D7E8BF500C71655 /* Assets.xcassets in Resources */,
 				1C1E952B1D7E8BF500C71655 /* Main.storyboard in Resources */,
