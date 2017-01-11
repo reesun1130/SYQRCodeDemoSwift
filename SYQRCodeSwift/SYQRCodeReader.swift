@@ -25,16 +25,16 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     fileprivate var readerDelegate : SYQRCodeReaderSwiftDelegate!
     
     //读取之后的回调
-//    fileprivate var suncessBlock : (SYQRCodeReader, SYQRCodeModel)->Void
-//    fileprivate var failBlock : (SYQRCodeReader)->Void
-//    
-//    required public init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
+    //    fileprivate var suncessBlock : (SYQRCodeReader, SYQRCodeModel)->Void
+    //    fileprivate var failBlock : (SYQRCodeReader)->Void
+    //
+    //    required public init?(coder aDecoder: NSCoder) {
+    //        super.init(coder: aDecoder)
+    //    }
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-
+        
         //指示符
         self.createLoadingIndicator()
         
@@ -76,10 +76,10 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
         else if (status == .authorized) {
             canAccess = true
         }
-                
+        
         return canAccess
     }
-
+    
     //头
     private func createTopBar() {
         if btnBack == nil {
@@ -107,21 +107,18 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     
     //扫描视图
     private func displayScanView() {
-        if self.loadCaptureUI() {
-            self.showUnAuthorizedTips(false)
-
-            weak var weakSelf : SYQRCodeReader!
-
-            DispatchQueue.main.async(execute: { () -> Void in
-                weakSelf.setOverlayPickerView()
-                weakSelf.startSYQRCodeReading()
-            })
-        }
-        else {
-            self.showUnAuthorizedTips(true)
-        }
+        DispatchQueue.main.async(execute: { () -> Void in
+            if self.loadCaptureUI() {
+                self.showUnAuthorizedTips(false)
+                self.setOverlayPickerView()
+                self.startSYQRCodeReading()
+            }
+            else {
+                self.showUnAuthorizedTips(true)
+            }
+        })
     }
-
+    
     private func loadCaptureUI() -> Bool {
         qrVideoPreviewLayer = SYAVCaptureVideoPreviewLayer(frame: CGRect(x: 0, y: 0, width: kSCREEN_WIDTH, height: kSCREEN_HEIGHT), rectOfInterest: getReaderViewBoundsWithSize(CGSize(width: 200, height: 200)), metadataObjectsDelegate: self)
         
@@ -151,7 +148,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
         //添加导航栏
         self.createTopBar()
     }
-
+    
     //权限受限
     func showUnAuthorizedTips(_ flag:Bool) {
         if (_tipsLabel == nil) {
@@ -162,7 +159,7 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
             _tipsLabel.isUserInteractionEnabled = true
             _tipsLabel.text = "请在'设置-隐私-相机\'选项中，\r允许APP访问你的相机。"
             self.view.addSubview(_tipsLabel)
-
+            
             let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(SYQRCodeReader.handleTipsTap))
             _tipsLabel.addGestureRecognizer(tapGes)
         }
@@ -180,15 +177,16 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
     func handleTipsTap() {
         UIApplication.shared.openURL(URL.init(string: "prefs:root")!)
     }
-
+    
     //开始扫描
     public func startSYQRCodeReading() {
         qrSession.startRunning()
         _vActivityIndicator.stopAnimating()
-
+        
         if _line == nil {
+            let podBundle = Bundle.init(for: SYQRCodeReader.self)
             _line = UIImageView.init(frame: CGRect(x: (kSCREEN_WIDTH - 216) / 2.0, y: kLineMinY, width: 216, height: 1))
-            _line.image = UIImage.init(named: "qrcode_blueline")
+            _line.image = UIImage.init(named: "qrcode_blueline", in: podBundle, compatibleWith: nil)
             qrVideoPreviewLayer.videoPreviewLayer!.addSublayer(_line.layer)
         }
         

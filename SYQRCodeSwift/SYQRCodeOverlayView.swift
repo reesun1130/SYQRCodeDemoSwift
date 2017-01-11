@@ -17,7 +17,7 @@ class SYQRCodeOverlayView : UIView {
         self.baseLayer = baseLayer
         self.createSubViews()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -56,8 +56,9 @@ class SYQRCodeOverlayView : UIView {
         self.baseLayer?.addSublayer(scanCropView.layer)
         
         //四个边角
-        let cornerImage : UIImage = UIImage.init(named: "qrcode_corner")!
-        
+        let podBundle = Bundle.init(for: SYQRCodeOverlayView.self)
+        let cornerImage : UIImage = UIImage(named: "qrcode_corner", in:podBundle , compatibleWith: nil)!
+
         //左侧的imageview
         let leftView_image : UIImageView = UIImageView.init(frame: CGRect(x: leftView.frame.maxX, y: upView.frame.maxY, width: cornerImage.size.width, height: cornerImage.size.height))
         leftView_image.image = cornerImage
@@ -80,8 +81,8 @@ class SYQRCodeOverlayView : UIView {
         downViewRight_image.image = cornerImage
         downViewRight_image.transform = CGAffineTransform(rotationAngle: DEGREES_TO_RADIANS(270))
         self.baseLayer?.addSublayer(downViewRight_image.layer)
-
-
+        
+        
         let labIntroudction = UILabel.init(frame: CGRect(x: 0, y: downView.frame.minY + 15, width: self.frame.width, height: 20))
         labIntroudction.textAlignment = .center
         labIntroudction.font = UIFont.systemFont(ofSize: 14.0)
