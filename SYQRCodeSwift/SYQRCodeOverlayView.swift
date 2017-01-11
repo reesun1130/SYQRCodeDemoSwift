@@ -57,7 +57,8 @@ class SYQRCodeOverlayView : UIView {
         
         //四个边角
         let podBundle = Bundle.init(for: SYQRCodeOverlayView.self)
-        let cornerImage : UIImage = UIImage(named: "qrcode_corner", in:podBundle , compatibleWith: nil)!
+        let bundle = Bundle.init(url: podBundle.url(forResource: "SYQRCodeSwift", withExtension: "bundle")!)
+        let cornerImage : UIImage = UIImage(named: "qrcode_corner", in:bundle , compatibleWith: nil)!
 
         //左侧的imageview
         let leftView_image : UIImageView = UIImageView.init(frame: CGRect(x: leftView.frame.maxX, y: upView.frame.maxY, width: cornerImage.size.width, height: cornerImage.size.height))

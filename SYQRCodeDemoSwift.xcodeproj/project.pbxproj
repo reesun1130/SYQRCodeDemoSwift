@@ -13,10 +13,7 @@
 		1C1E952B1D7E8BF500C71655 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E95291D7E8BF500C71655 /* Main.storyboard */; };
 		1C1E952D1D7E8BF500C71655 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E952C1D7E8BF500C71655 /* Assets.xcassets */; };
 		1C1E95301D7E8BF500C71655 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1E952E1D7E8BF500C71655 /* LaunchScreen.storyboard */; };
-		1C29FB1A1E263633007A90AE /* qrcode_blueline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C29FB161E263633007A90AE /* qrcode_blueline@2x.png */; };
-		1C29FB1B1E263633007A90AE /* qrcode_blueline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C29FB171E263633007A90AE /* qrcode_blueline@3x.png */; };
-		1C29FB1C1E263633007A90AE /* qrcode_corner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C29FB181E263633007A90AE /* qrcode_corner@2x.png */; };
-		1C29FB1D1E263633007A90AE /* qrcode_corner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C29FB191E263633007A90AE /* qrcode_corner@3x.png */; };
+		1C29FB1F1E263B54007A90AE /* SYQRCodeSwift.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1C29FB1E1E263B54007A90AE /* SYQRCodeSwift.bundle */; };
 		1CEAF6581E1F3EEE00683F00 /* SYAVCaptureVideoPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF64E1E1F3EEE00683F00 /* SYAVCaptureVideoPreviewLayer.swift */; };
 		1CEAF6591E1F3EEE00683F00 /* SYDefinesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF64F1E1F3EEE00683F00 /* SYDefinesHeader.swift */; };
 		1CEAF65A1E1F3EEE00683F00 /* SYQRCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEAF6501E1F3EEE00683F00 /* SYQRCodeModel.swift */; };
@@ -34,10 +31,7 @@
 		1C1E952C1D7E8BF500C71655 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C1E952F1D7E8BF500C71655 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C1E95311D7E8BF500C71655 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1C29FB161E263633007A90AE /* qrcode_blueline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_blueline@2x.png"; sourceTree = "<group>"; };
-		1C29FB171E263633007A90AE /* qrcode_blueline@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_blueline@3x.png"; sourceTree = "<group>"; };
-		1C29FB181E263633007A90AE /* qrcode_corner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_corner@2x.png"; sourceTree = "<group>"; };
-		1C29FB191E263633007A90AE /* qrcode_corner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_corner@3x.png"; sourceTree = "<group>"; };
+		1C29FB1E1E263B54007A90AE /* SYQRCodeSwift.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SYQRCodeSwift.bundle; sourceTree = "<group>"; };
 		1CEAF64E1E1F3EEE00683F00 /* SYAVCaptureVideoPreviewLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYAVCaptureVideoPreviewLayer.swift; sourceTree = "<group>"; };
 		1CEAF64F1E1F3EEE00683F00 /* SYDefinesHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYDefinesHeader.swift; sourceTree = "<group>"; };
 		1CEAF6501E1F3EEE00683F00 /* SYQRCodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYQRCodeModel.swift; sourceTree = "<group>"; };
@@ -91,16 +85,13 @@
 		1CEAF6491E1F3EEE00683F00 /* SYQRCodeSwift */ = {
 			isa = PBXGroup;
 			children = (
-				1C29FB161E263633007A90AE /* qrcode_blueline@2x.png */,
-				1C29FB171E263633007A90AE /* qrcode_blueline@3x.png */,
-				1C29FB181E263633007A90AE /* qrcode_corner@2x.png */,
-				1C29FB191E263633007A90AE /* qrcode_corner@3x.png */,
 				1CEAF64E1E1F3EEE00683F00 /* SYAVCaptureVideoPreviewLayer.swift */,
 				1CEAF64F1E1F3EEE00683F00 /* SYDefinesHeader.swift */,
 				1CEAF6501E1F3EEE00683F00 /* SYQRCodeModel.swift */,
 				1CEAF6511E1F3EEE00683F00 /* SYQRCodeOverlayView.swift */,
 				1CEAF6521E1F3EEE00683F00 /* SYQRCodeReader.swift */,
 				1CEAF6531E1F3EEE00683F00 /* SYQRCodeUtility.swift */,
+				1C29FB1E1E263B54007A90AE /* SYQRCodeSwift.bundle */,
 			);
 			path = SYQRCodeSwift;
 			sourceTree = "<group>";
@@ -166,14 +157,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C29FB1D1E263633007A90AE /* qrcode_corner@3x.png in Resources */,
+				1C29FB1F1E263B54007A90AE /* SYQRCodeSwift.bundle in Resources */,
 				1C05AE2E1D7FF6BA00A80984 /* qrcodelogo.png in Resources */,
-				1C29FB1B1E263633007A90AE /* qrcode_blueline@3x.png in Resources */,
 				1C1E95301D7E8BF500C71655 /* LaunchScreen.storyboard in Resources */,
 				1C1E952D1D7E8BF500C71655 /* Assets.xcassets in Resources */,
 				1C1E952B1D7E8BF500C71655 /* Main.storyboard in Resources */,
-				1C29FB1A1E263633007A90AE /* qrcode_blueline@2x.png in Resources */,
-				1C29FB1C1E263633007A90AE /* qrcode_corner@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

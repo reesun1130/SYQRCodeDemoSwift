@@ -185,8 +185,10 @@ public class SYQRCodeReader : UIViewController, AVCaptureMetadataOutputObjectsDe
         
         if _line == nil {
             let podBundle = Bundle.init(for: SYQRCodeReader.self)
+            let bundle = Bundle.init(url: podBundle.url(forResource: "SYQRCodeSwift", withExtension: "bundle")!)
+            
             _line = UIImageView.init(frame: CGRect(x: (kSCREEN_WIDTH - 216) / 2.0, y: kLineMinY, width: 216, height: 1))
-            _line.image = UIImage.init(named: "qrcode_blueline", in: podBundle, compatibleWith: nil)
+            _line.image = UIImage.init(named: "qrcode_blueline", in: bundle, compatibleWith: nil)
             qrVideoPreviewLayer.videoPreviewLayer!.addSublayer(_line.layer)
         }
         
