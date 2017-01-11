@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "SYQRCodeSwift"
-s.version      = "1.1.1"
+s.version      = "1.1.2"
 s.summary      = "SY QRCode Demo Swift，二维码扫描Swift实现，原生API，iOS8+"
 s.description  = <<-DESC
 SY QRCode Demo Swift，二维码扫描Swift实现，原生API，iOS8+
@@ -19,7 +19,7 @@ s.author       = { "reesun" => "ree.sun.cn@hotmail.com" }
 
 s.source       = { :git => "https://github.com/reesun1130/SYQRCodeDemoSwift.git", :tag => s.version }
 s.source_files = "SYQRCodeSwift/*.swift"
-s.resources = "SYQRCodeSwift/*.{png,bundle}"
+s.resource_bundles = {'SYQRCodeSwift' => ['Resources/*.png']}
 
 s.platform     = :ios, "8.0"
 s.requires_arc = true
